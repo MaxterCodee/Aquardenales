@@ -16,37 +16,50 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         //broker del usuario
-        $brokers = Broker::where('user_id', $user->id)->first();
-        $broker = $brokers;
+        $broker = Broker::where('user_id', $user->id)->first();
+
+        // Verificar si hay broker asociado
+        if (!$broker) {
+            // Redirigir si no se encuentra un broker
+            return redirect()->route('empty')->with('error', 'No se encontró un broker asociado al usuario.');
+        }
+
         $dataBroker = $broker->data_brokers;
+
+        // Verificar si data_brokers es null o está vacío
+        if (!$dataBroker || $dataBroker->isEmpty()) {
+            // Redirigir si no hay datos en data_brokers
+            return redirect()->route('empty')->with('error', 'No se encontraron datos del broker.');
+        }
+
         $lastDataBroker = $dataBroker->last();
 
+        // Realizar los cálculos solo si se tiene data_brokers
         $brockerProfundidad = $broker->depth_cm;
         $capacidadLitros = $broker->liter_capacity;
         $sensorDistancia = $lastDataBroker->distance_cm;
-        //calculo de la cantidad de litros
+
+        // Cálculo de la cantidad de litros
         $altura_agua = $brockerProfundidad - $sensorDistancia;
         $litros_aproximados = round(($altura_agua / $brockerProfundidad) * $capacidadLitros);
-        //calculo porcentaje
+
+        // Cálculo porcentaje
         $porcentaje = round(($litros_aproximados / $capacidadLitros) * 100);
-        //calcular consumo de litros hoy
+
+        // Calcular consumo de litros hoy
         $hoy = Carbon::today();
-        $litrosGastados = $lastDataBroker
+        $litrosGastados = $dataBroker
             ->whereDate('date', $hoy)
             ->sum('liters_min');
+
         $ph = $lastDataBroker->ph;
-        //data broker
         $brokerName = $broker->name;
 
-        //obtener ultima medicion "Ultima actualizacion hace $'tiempo'"
+        // Obtener la última medición
         $time = $lastDataBroker->time;
         $date = $lastDataBroker->date;
         $timeUpdate = Carbon::parse($date . ' ' . $time)->diffForHumans();
-        //quitar 'en'
         $timeUpdate = str_replace('en ', '', $timeUpdate);
-
-
-
 
         // Obtener la fecha actual
         $now = Carbon::now();
@@ -58,7 +71,7 @@ class DashboardController extends Controller
         }
 
         // Obtener los datos de consumo por mes
-        $data = $lastDataBroker::select(
+        $data = $dataBroker::select(
             DB::raw('SUM(liters_min) as total_consumption'),
             DB::raw('DATE_FORMAT(date, "%Y-%m") as month')
         )
@@ -78,9 +91,6 @@ class DashboardController extends Controller
             }
         }
 
-
-        $broker = Broker::all();
-
         return view('dashboard', compact(
             'brokerName',
             'porcentaje',
@@ -88,8 +98,13 @@ class DashboardController extends Controller
             'ph',
             'timeUpdate',
             'labels1',
-            'consumptionData',
-
+            'consumptionData'
         ));
     }
+
+    public function empty()
+    {
+        return view('empty');
+    }
+
 }

@@ -18,6 +18,8 @@ Route::middleware([
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/brokers', [BrokersController::class, 'index'])->name('brokers.index');
 
+    Route::get('/empty', [DashboardController::class, 'empty'])->name('empty');
+
 
 });
 
