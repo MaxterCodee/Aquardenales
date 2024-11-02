@@ -2,12 +2,15 @@
 
 use App\Http\Controllers\BrokersController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DataBrokerController;
 use App\Http\Controllers\GeminiController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+
 
 Route::middleware([
     'auth:sanctum',
@@ -22,6 +25,8 @@ Route::middleware([
 
 
 });
+
+
 
 
 
