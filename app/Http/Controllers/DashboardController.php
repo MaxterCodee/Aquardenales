@@ -50,7 +50,7 @@ class DashboardController extends Controller
         // Calcular consumo de litros hoy
         $hoy = Carbon::today();
         $litrosGastados = $dataBroker
-            ->where('date', $hoy)
+            // ->where('date', $hoy)
             ->sum('liters_min');
 
         $ph = $lastDataBroker->ph;
