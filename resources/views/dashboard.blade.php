@@ -26,11 +26,34 @@
         }
     </style>
     <br>
+    <!-- Verificar si $ph es menor a 6.5 -->
+    @if ($ph < 6.5)
+        <!-- Modal -->
+        <div class="fixed inset-0 flex items-center justify-center z-50">
+            <div class="fixed inset-0 bg-black opacity-50"></div>
+            <div class="bg-white rounded-lg p-6 z-10">
+                <h2 class="text-xl font-bold">Advertencia</h2>
+                <p class="mt-4">El pH no es bueno. Su valor es {{ $ph }}.</p>
+                <div class="mt-6 flex justify-end">
+                    <button onclick="closeModal()" class="bg-blue-500 text-white px-4 py-2 rounded">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    @endif
+
+    <script>
+        // Función para cerrar el modal
+        function closeModal() {
+            document.querySelector('.fixed.inset-0').style.display = 'none';
+        }
+    </script>
+
 
 
     <div class="bg-white p-4 rounded-xl">
         <div class="flex flex-col md:flex-row">
-            <div class="flex-none w-1/4 p-2 flex items-center justify-center"> <!-- Ancho ajustado a una cuarta parte -->
+            <div class="flex-none w-1/4 p-2 flex items-center justify-center">
+                <!-- Ancho ajustado a una cuarta parte -->
                 <div class="container flex flex-col items-center"> <!-- Flex para centrar contenido en columna -->
                     <canvas id="water" width="192" height="320"></canvas>
                     <canvas id="tank" width="192" height="320"></canvas>
@@ -247,8 +270,8 @@
                 <div style="line-height: 0.5em;">&nbsp;</div>
                 <div class="flex items-center p-4 mb-4 text-sm text-yellow-800 border border-yellow-300 rounded-lg bg-yellow-50 dark:bg-gray-800 dark:text-yellow-300 dark:border-yellow-800"
                     role="alert">
-                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
                             d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
                     </svg>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Broker;
+use App\Models\DataBroker;
 use Carbon\Carbon;
 use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 use Illuminate\Http\Request;
@@ -49,7 +50,7 @@ class DashboardController extends Controller
         // Calcular consumo de litros hoy
         $hoy = Carbon::today();
         $litrosGastados = $dataBroker
-            ->whereDate('date', $hoy)
+            ->where('date', $hoy)
             ->sum('liters_min');
 
         $ph = $lastDataBroker->ph;
@@ -71,7 +72,7 @@ class DashboardController extends Controller
         }
 
         // Obtener los datos de consumo por mes
-        $data = $dataBroker::select(
+        $data = DataBroker::select(
             DB::raw('SUM(liters_min) as total_consumption'),
             DB::raw('DATE_FORMAT(date, "%Y-%m") as month')
         )
@@ -106,5 +107,4 @@ class DashboardController extends Controller
     {
         return view('empty');
     }
-
 }
