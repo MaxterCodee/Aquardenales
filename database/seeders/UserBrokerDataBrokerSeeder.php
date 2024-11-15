@@ -17,17 +17,17 @@ class UserBrokerDataBrokerSeeder extends Seeder
             [
                 'name' => 'Usuario 1',
                 'email' => 'usuario1@example.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123',
             ],
             [
                 'name' => 'Usuario 2',
                 'email' => 'usuario2@example.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123',
             ],
             [
                 'name' => 'Usuario 3',
                 'email' => 'usuario3@example.com',
-                'password' => Hash::make('password123'),
+                'password' => 'password123',
             ],
         ];
 
