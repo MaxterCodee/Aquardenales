@@ -56,6 +56,23 @@
                         class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> --}}
                 </a>
             </li>
+            <li>
+                <a href="{{ route('users.index') }}"
+                    class="flex items-center p-2 rounded-lg
+                        {{ request()->routeIs('users.index') ? 'bg-blue-600 text-white' : 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group' }}">
+                    <svg class="flex-shrink-0 w-5 h-5
+                        {{ request()->routeIs('users.index') ? 'text-white' : 'text-gray-500' }}
+                        transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
+                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                        viewBox="0 0 20 20">
+                        <path d="M10 10a4 4 0 1 0-4-4 4 4 0 0 0 4 4zm0 2c-5.333 0-8 2.667-8 6v1h16v-1c0-3.333-2.667-6-8-6z" />
+                    </svg>
+                    <span class="flex-1 ms-3 whitespace-nowrap">Usuarios</span>
+                    {{-- <span
+                        class="inline-flex items-center justify-center px-2 ms-3 text-sm font-medium text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-300">Pro</span> --}}
+                </a>
+            </li>
+
 
 
 

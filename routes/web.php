@@ -4,6 +4,7 @@ use App\Http\Controllers\BrokersController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DataBrokerController;
 use App\Http\Controllers\GeminiController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -23,7 +24,9 @@ Route::middleware([
 
     Route::get('/empty', [DashboardController::class, 'empty'])->name('empty');
 
-
+    Route::get('/usuarios', [UsersController::class, 'index'])->name('users.index');
+    Route::post('/users', [UsersController::class, 'store'])->name('users.store');
+    Route::put('/users/{user}', [UsersController::class, 'update'])->name('users.update');
 });
 
 
