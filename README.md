@@ -44,13 +44,21 @@ docker-compose exec app bash -c "\
 
 ---
 
-## 5️⃣ Ejecutar migraciones y seeders (primero se debe crear usuario)
+## 5️⃣ Ejecutar migraciones 
 ```sh
 docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
 ```
 - `migrate`: Aplica las migraciones a la base de datos.
-- `--seed`: Rellena la base de datos con datos de prueba.
+
+
+## 6️⃣ Ejecutar migraciones y seeders (primero se debe crear usuario)
+```sh
+docker-compose exec app php artisan db:seed --class=UserBrokerDataSeeder
+```
+- `seed`: Rellena la base de datos con datos de prueba.
 - `--class=UserBrokerDataSeeder`: Ejecuta un seeder específico.
+php artisan db:seed --class=UserBrokerDataSeeder
+
 
 ---
 
