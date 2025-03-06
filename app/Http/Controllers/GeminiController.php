@@ -79,7 +79,7 @@ class GeminiController extends Controller
             ];
 
             // Consumir el endpoint de Google Generative Language
-            $response = Http::post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyD2B1smXfqDRwE0alxY-s2n0mH7x78H93s', $payload);
+            $response = Http::post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=' . env('GEMINI_API_KEY'), $payload);
 
             // Verificar si la respuesta fue exitosa
             if ($response->successful()) {
@@ -119,7 +119,7 @@ class GeminiController extends Controller
             ];
 
             // Consumir el endpoint de Google Generative Language
-            $response = Http::post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyD2B1smXfqDRwE0alxY-s2n0mH7x78H93s', $payload);
+            $response = Http::post('https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=AIzaSyC9sktdHFAUyJsoKuxql8bmbENCDvhBCi4', $payload);
 
             // Verificar si la respuesta fue exitosa
             if ($response->successful()) {

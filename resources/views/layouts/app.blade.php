@@ -78,7 +78,7 @@
                 <div id="chat-box" class="overflow-y-auto border p-4 rounded-lg bg-gray-50 mb-4"
                     style="height: 400px;">
                     <!-- Mensajes del chatbot -->
-                    <h1>Hola</h1>
+                    {{-- <h1>Hola</h1> --}}
                 </div>
 
                 <form id="chat-form" class="flex">

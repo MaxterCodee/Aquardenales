@@ -1,29 +1,30 @@
-Para instalar el proyecto
+# instalar paquetes
+npm install 
 
-composer install
+# Crear build
+npm run build
 
-**(el archivo .env.example copialo o duplicalo y cambiale el nombre a '.env'**
+# Construir los contenedores
+docker-compose up -d --build
 
-**Para instalar recursos npm**
+# Otorgar permisos al usuario del contenedor
+docker-compose exec app chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
 
-npm install
+# Asignar permisos de escritura
+docker-compose exec app chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 
-php artisan migrate
+# Correr migraciones
+docker-compose exec app php artisan migrate
 
-php artisan key:generate
 
-**Para generar usuarios, sensores y datos con seeder**
+------------------------------------------------------
 
-php artisan db:seed --class=UserBrokerDataSeeder
 
-**Usuarios de prueba son los siguiente**
+# sensores y datos con seeder
 
-[**usuario1@example.com**](mailto:usuario1@example.com)
+docker-compose exec app php artisan db:seed --class=UserBrokerDataSeeder
 
-[**usuario2@example.com**](mailto:usuario1@example.com)
 
-[**usuario3@example.com**](mailto:usuario3@example.com)
 
-**para ejecutarlo siempre**
 
-npm run dev
+

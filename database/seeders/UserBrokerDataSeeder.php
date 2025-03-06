@@ -13,11 +13,7 @@ class UserBrokerDataSeeder extends Seeder
     public function run()
     {
         // Crear un nuevo usuario
-        $user = User::create([
-            'name' => 'usuario',
-            'email' => 'usuario@example.com',
-            'password' => Hash::make('contraseña123'), // Cambia la contraseña según tus necesidades
-        ]);
+
 
         // Crear un broker asociado al usuario
         $broker = Broker::create([
@@ -26,7 +22,7 @@ class UserBrokerDataSeeder extends Seeder
             'habitants' => 100,
             'depth_cm' => 150,
             'liter_capacity' => 1000,
-            'user_id' => $user->id,
+            'user_id' => 1,
         ]);
 
         // Crear varios registros de data_broker asociados al broker

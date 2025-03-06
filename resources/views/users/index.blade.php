@@ -89,9 +89,9 @@
                                     required>
                                     <option value="">Seleccione un rol</option>
                                     <!-- Suponiendo que tienes una variable roles que contiene los roles disponibles -->
-                                    @foreach ($roles as $role)
+                                    {{-- @foreach ($roles as $role)
                                         <option value="{{ $role->name }}">{{ $role->name }}</option>
-                                    @endforeach
+                                    @endforeach --}}
                                 </select>
                                 @error('role_name')
                                     <p class="text-red-500 text-xs italic">{{ $message }}</p>
@@ -104,7 +104,7 @@
                                     Crear Usuario
                                 </button>
                             </div>
-                        </form> 
+                        </form>
                     </div>
                 </div>
             </div>

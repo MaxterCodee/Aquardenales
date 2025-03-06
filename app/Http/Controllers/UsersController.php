@@ -12,9 +12,9 @@ class UsersController extends Controller
     // Mostrar la lista de usuarios
     public function index()
     {
-        $roles = Role::all();
+        // $roles = Role::all();
         $users = User::all();
-        return view('users.index', compact('users', 'roles'));
+        return view('users.index', compact('users'));
     }
 
     // Mostrar el formulario para crear un nuevo usuario

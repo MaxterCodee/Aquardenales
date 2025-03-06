@@ -15,9 +15,12 @@
                         </svg>
                     </button>
                     <a href="https://flowbite.com" class="flex ms-2 md:me-24">
-                        <img src="https://cdn-icons-png.flaticon.com/512/1206/1206405.png" class="h-8 me-3" alt="FlowBite Logo" />
+                        <img src="https://cdn-icons-png.flaticon.com/512/1206/1206405.png" class="h-8 me-3"
+                            alt="FlowBite Logo" />
                         <span
-                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">Aquardenales</span>
+                            class="self-center text-xl font-semibold sm:text-2xl whitespace-nowrap dark:text-white">
+                            <span class="text-blue-500">V</span>erify <span class="text-blue-500">W</span>ater
+                        </span>
                     </a>
                 </div>
                 <div class="flex items-center">
@@ -36,11 +39,10 @@
                             id="dropdown-user">
                             <div class="px-4 py-3" role="none">
                                 <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    Neil Sims
+                                    {{Auth::user()->name}}
                                 </p>
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300"
-                                    role="none">
-                                    neil.sims@flowbite.com
+                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
+                                    {{Auth::user()->email}}
                                 </p>
                             </div>
                             <ul class="py-1" role="none">
@@ -58,8 +60,8 @@
                                     <form method="POST" action="{{ route('logout') }}" class="inline">
                                         @csrf
                                         <button type="submit"
-                                                class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                                role="menuitem">Cerrar sesion</button>
+                                            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            role="menuitem">Cerrar sesion</button>
                                     </form>
 
                                 </li>

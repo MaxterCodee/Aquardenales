@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DataBrokerController;
+use App\Http\Controllers\DataBrokerControllerApi;
 use App\Http\Controllers\GeminiController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -18,4 +19,7 @@ Route::post('logout', [AuthController::class, 'logout'])->middleware('auth:sanct
 
 
 Route::post('/data-brokers', [DataBrokerController  ::class, 'store']);
+
+
+Route::post('/databrokers', [DataBrokerControllerApi::class, 'store']);
 
