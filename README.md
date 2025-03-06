@@ -44,7 +44,7 @@ docker-compose exec app bash -c "\
 
 ---
 
-## 5️⃣ Ejecutar migraciones y seeders
+## 5️⃣ Ejecutar migraciones y seeders (primero se debe crear usuario)
 ```sh
 docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
 ```
