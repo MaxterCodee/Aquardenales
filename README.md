@@ -1,23 +1,32 @@
-🚀 Despliegue del Proyecto con Docker y Laravel
-1️⃣ Instalar dependencias del proyecto
+# 🚀 Despliegue del Proyecto con Docker y Laravel
 
+## 1️⃣ Instalar dependencias del proyecto
+```sh
 npm install
+```
+Este comando instala todas las dependencias de `package.json` necesarias para el frontend.
 
-Este comando instala todas las dependencias de package.json necesarias para el frontend.
-2️⃣ Generar la build del frontend
+---
 
+## 2️⃣ Generar la build del frontend
+```sh
 npm run build
-
+```
 Crea una versión optimizada del frontend lista para producción.
-3️⃣ Construir y levantar los contenedores con Docker
 
+---
+
+## 3️⃣ Construir y levantar los contenedores con Docker
+```sh
 docker-compose up -d --build
+```
+- `-d`: Ejecuta los contenedores en segundo plano.
+- `--build`: Fuerza la reconstrucción de las imágenes.
 
-    -d: Ejecuta los contenedores en segundo plano.
-    --build: Fuerza la reconstrucción de las imágenes.
+---
 
-4️⃣ Otorgar permisos adecuados a los directorios requeridos
-
+## 4️⃣ Otorgar permisos adecuados a los directorios requeridos
+```sh
 PERMISSIONS_PATHS=(
     "/var/www/storage"
     "/var/www/bootstrap/cache"
@@ -29,14 +38,20 @@ docker-compose exec app bash -c "\
         chmod -R 775 \$path
     done
 "
+```
+🔹 Cambia el propietario de los directorios a `www-data` (usuario del servidor web).  
+🔹 Asigna permisos `775` para garantizar que el servidor pueda escribir en ellos.
 
-🔹 Cambia el propietario de los directorios a www-data (usuario del servidor web).
-🔹 Asigna permisos 775 para garantizar que el servidor pueda escribir en ellos.
-5️⃣ Ejecutar migraciones y seeders
+---
 
+## 5️⃣ Ejecutar migraciones y seeders
+```sh
 docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
+```
+- `migrate`: Aplica las migraciones a la base de datos.
+- `--seed`: Rellena la base de datos con datos de prueba.
+- `--class=UserBrokerDataSeeder`: Ejecuta un seeder específico.
 
-    migrate: Aplica las migraciones a la base de datos.
-    --seed: Rellena la base de datos con datos de prueba.
-    --class=UserBrokerDataSeeder: Ejecuta un seeder específico.
+---
 
+📌 **¡Listo!** Ahora el proyecto está desplegado y funcionando correctamente. 🚀
