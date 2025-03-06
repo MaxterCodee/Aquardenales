@@ -1,13 +1,23 @@
-# Instalar paquetes
+🚀 Despliegue del Proyecto con Docker y Laravel
+1️⃣ Instalar dependencias del proyecto
+
 npm install
 
-# Crear build
+Este comando instala todas las dependencias de package.json necesarias para el frontend.
+2️⃣ Generar la build del frontend
+
 npm run build
 
-# Construir y levantar los contenedores
+Crea una versión optimizada del frontend lista para producción.
+3️⃣ Construir y levantar los contenedores con Docker
+
 docker-compose up -d --build
 
-# Otorgar permisos adecuados al contenedor
+    -d: Ejecuta los contenedores en segundo plano.
+    --build: Fuerza la reconstrucción de las imágenes.
+
+4️⃣ Otorgar permisos adecuados a los directorios requeridos
+
 PERMISSIONS_PATHS=(
     "/var/www/storage"
     "/var/www/bootstrap/cache"
@@ -20,5 +30,13 @@ docker-compose exec app bash -c "\
     done
 "
 
-# Ejecutar migraciones y seeders
+🔹 Cambia el propietario de los directorios a www-data (usuario del servidor web).
+🔹 Asigna permisos 775 para garantizar que el servidor pueda escribir en ellos.
+5️⃣ Ejecutar migraciones y seeders
+
 docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
+
+    migrate: Aplica las migraciones a la base de datos.
+    --seed: Rellena la base de datos con datos de prueba.
+    --class=UserBrokerDataSeeder: Ejecuta un seeder específico.
+
