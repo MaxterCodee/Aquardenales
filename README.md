@@ -51,7 +51,7 @@ docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
 - `migrate`: Aplica las migraciones a la base de datos.
 
 
-## 6️⃣ Ejecutar migraciones y seeders (primero se debe crear usuario)
+## 6️⃣ Ejecutar migraciones y seeders (primero se debe crear usuario con un correo real)
 ```sh
 docker-compose exec app php artisan db:seed --class=UserBrokerDataSeeder
 ```
