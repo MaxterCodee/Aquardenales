@@ -1,30 +1,24 @@
-# instalar paquetes
-npm install 
+# Instalar paquetes
+npm install
 
 # Crear build
 npm run build
 
-# Construir los contenedores
+# Construir y levantar los contenedores
 docker-compose up -d --build
 
-# Otorgar permisos al usuario del contenedor
-docker-compose exec app chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Otorgar permisos adecuados al contenedor
+PERMISSIONS_PATHS=(
+    "/var/www/storage"
+    "/var/www/bootstrap/cache"
+)
 
-# Asignar permisos de escritura
-docker-compose exec app chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+docker-compose exec app bash -c "\
+    for path in \"${PERMISSIONS_PATHS[@]}\"; do
+        chown -R www-data:www-data \$path
+        chmod -R 775 \$path
+    done
+"
 
-# Correr migraciones
-docker-compose exec app php artisan migrate
-
-
-------------------------------------------------------
-
-
-# sensores y datos con seeder
-
-docker-compose exec app php artisan db:seed --class=UserBrokerDataSeeder
-
-
-
-
-
+# Ejecutar migraciones y seeders
+docker-compose exec app php artisan migrate --seed --class=UserBrokerDataSeeder
