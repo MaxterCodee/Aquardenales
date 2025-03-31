@@ -147,7 +147,7 @@
                             <span class="font-medium text-xl">Ultima actualizacion</span><br>
                             <span
                                 class="bg-gray-100 text-gray-800 text-l font-medium me-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-gray-300">
-                                Hace {{ $timeUpdate }}
+                                {{ $timeUpdate }}
                             </span>
 
                         </div>
@@ -316,10 +316,10 @@
                 </div>
             </div>
         </div>
-        <div class="p-4 text-gray">
+        {{-- <div class="p-4 text-gray">
             <div class="bg-white p-4 rounded-xl">
             </div>
-        </div>
+        </div> --}}
     </div>
 
 

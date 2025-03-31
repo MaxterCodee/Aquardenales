@@ -1,3 +1,6 @@
+# docker-compose.yaml
+
+
 version: '3.8'
 
 services:
@@ -9,11 +12,15 @@ services:
     restart: always
     working_dir: /var/www
     volumes:
-      - .:/var/www
+      - .:/var/www:delegated
     networks:
       - laravel_network
     depends_on:
       - db
+    environment:
+      APP_ENV: production
+      APP_DEBUG: "false"
+    command: ["php-fpm"]
 
   db:
     image: mysql:8.0
@@ -24,6 +31,7 @@ services:
       MYSQL_USER: user
       MYSQL_PASSWORD: secret
       MYSQL_ROOT_PASSWORD: rootpassword
+      TZ: UTC
     ports:
       - "3306:3306"
     volumes:
